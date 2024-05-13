@@ -267,3 +267,4 @@ C:\Users\raj42\source\repos\tekno\JobManagementAPI\JobManagementAPI\obj\Debug\ne
 C:\Users\raj42\source\repos\tekno\JobManagementAPI\JobManagementAPI\obj\Debug\net8.0\JobManagementAPI.pdb
 C:\Users\raj42\source\repos\tekno\JobManagementAPI\JobManagementAPI\obj\Debug\net8.0\JobManagementAPI.genruntimeconfig.cache
 C:\Users\raj42\source\repos\tekno\JobManagementAPI\JobManagementAPI\obj\Debug\net8.0\ref\JobManagementAPI.dll
+C:\Users\raj42\source\repos\tekno\JobManagementAPI\JobManagementAPI\bin\Debug\net8.0\PostmanCollection\JobAPI.postman_collection.json

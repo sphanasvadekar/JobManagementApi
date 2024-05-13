@@ -1,7 +1,7 @@
 ﻿using JobManagementAPI.Data;
 using JobManagementAPI.Model;
 using JobManagementAPI.Model.Entities;
-using JobManagementAPI.Services;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +13,7 @@ namespace JobManagementAPI.Controllers
     {
 
         private readonly ApplicationDbContext dbContext;
-        DbServices obdb = new();
+        
 
         public DepartmentController(ApplicationDbContext dbContext)
         {

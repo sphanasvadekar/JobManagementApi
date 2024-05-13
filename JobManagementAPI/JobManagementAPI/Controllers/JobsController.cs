@@ -3,6 +3,7 @@ using JobManagementAPI.Model;
 using JobManagementAPI.Model.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobManagementAPI.Controllers
 {
@@ -83,7 +84,7 @@ namespace JobManagementAPI.Controllers
         }
 
 
-        //Get https://localhost:portnumber/api/jobs/{id}
+        //Get https://localhost:portnumber/api/GetJobById/{id}
         [HttpGet("GetJobById/{id}")]
         //[Route("{id}")]
         public IActionResult GetById([FromRoute] int id)
@@ -114,7 +115,11 @@ namespace JobManagementAPI.Controllers
         {
             try
             {
-                var allJobs = dbContext.Jobs.ToList();
+                var allJobs = dbContext.Jobs
+                                        .Include(j => j.Location)
+                                        .Include(j => j.Department)
+                                        .ToList();
+
                 return Ok(allJobs);
             }
             catch (Exception ex)
@@ -124,7 +129,7 @@ namespace JobManagementAPI.Controllers
             }
         }
 
-
+        //Get https://localhost:portnumber/api/UpdateJob/{id}
         [HttpPut("UpdateJob/{id}")]
         public IActionResult UpdateJob(int id, [FromBody] CreateJobDto jobDto)
         {
@@ -231,13 +236,13 @@ namespace JobManagementAPI.Controllers
                     query = query.Where(j => j.DepartmentId == requestDto.DepartmentId);
                 }
 
-                // Filter by search string if provided
+                // Filter search string if provided
                 if (!string.IsNullOrWhiteSpace(requestDto.Q))
                 {
                     query = query.Where(j => j.Title.Contains(requestDto.Q));
                 }
 
-                // Get total count of jobs
+                // total count of jobs
                 var total = query.Count();
 
                 // Paginate the results
